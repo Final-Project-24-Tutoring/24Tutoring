@@ -17,9 +17,9 @@ public class RatingController {
         this.ratingService = ratingService;
     }
 
-    @GetMapping("/{id}")
-    public double getRatings(@PathVariable String id){
-        return ratingService.getTeacherRating(id);
+    @GetMapping("/{teacherId}")
+    public double getTeacherRating(@PathVariable String teacherId){
+        return ratingService.getTeacherRating(teacherId);
     }
 
     @PostMapping

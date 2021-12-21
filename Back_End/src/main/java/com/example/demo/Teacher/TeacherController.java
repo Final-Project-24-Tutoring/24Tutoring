@@ -23,15 +23,15 @@ public class TeacherController {
         return teacherService.getTeachers();
     }
 
-    @GetMapping("/{username}")
-    public Teacher getTeacher(@PathVariable String username){
-        return teacherService.getTeacher(username);
+    @GetMapping("/{id}")
+    public Teacher getTeacher(@PathVariable String id){
+        return teacherService.getTeacher(id);
     }
 
     @PostMapping
-    public void createTeacher(@RequestBody Teacher teacher){
+    public Teacher createTeacher(@RequestBody Teacher teacher){
 
-        teacherService.createTeacher(teacher);
+        return teacherService.createTeacher(teacher);
     }
 
     @PutMapping("/{id}")

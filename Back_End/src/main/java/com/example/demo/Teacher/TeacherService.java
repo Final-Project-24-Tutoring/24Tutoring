@@ -2,10 +2,10 @@ package com.example.demo.Teacher;
 
 import com.example.demo.Student.Student;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,13 +26,13 @@ public class TeacherService /*implements UserDetailsService*/ {
     public List<Teacher> getTeachers(){
         return teacherRepo.findAll();
     }
-
-    public Teacher getTeacher(String username){
-        return teacherRepo.findByUsername(username);
+//
+    public Teacher getTeacher(String id){
+        return teacherRepo.findById(id);
     }
 
-    public void createTeacher(Teacher teacher){
-        teacherRepo.save(teacher);
+    public Teacher createTeacher(Teacher teacher){
+        return teacherRepo.save(teacher);
     }
 
     public void updateTeacher(String id){

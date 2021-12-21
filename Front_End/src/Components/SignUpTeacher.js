@@ -95,6 +95,7 @@ function SignUpTeacher() {
               console.log(response.data);
               const action = setUser(response.data);
               dispatch(action);
+              
               //post grades and subjects to the teacher
               let copy=[];
               copy=state.teacherSubjects.slice();

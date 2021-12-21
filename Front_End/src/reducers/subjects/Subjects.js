@@ -1,14 +1,19 @@
+const subjects = JSON.parse(localStorage.getItem("subjects"));
+const gradeId = JSON.parse(localStorage.getItem("gradeId"));
+const teacherSlectedSubjects = JSON.parse(localStorage.getItem("teacherSlectedSubjects"));
+const offerSubject = JSON.parse(localStorage.getItem("offerSubject"));
 const initialState = {
-   subjects:[],
-   gradeId:0,
-   teacherSlectedSubjects:[],
+   subjects:subjects?subjects:[],
+   gradeId:gradeId?gradeId:0,
+   teacherSlectedSubjects:teacherSlectedSubjects?teacherSlectedSubjects:[],
    cardColors:["#71B48F","#77C6DC","#E2B952","#DB7451"],
-   offerSubject:{}
+   offerSubject: offerSubject?offerSubject:{}
   };
   
   const Subjects = (state = initialState, { type, payload }) => {
     switch (type) {
       case "SET_SUBJECTS":
+      localStorage.setItem("subjects",JSON.stringify(payload));
         return {
             subjects: payload,
             gradeId:state.gradeId,
@@ -17,6 +22,7 @@ const initialState = {
             offerSubject:state.offerSubject
         };
       case "SET_GRADE_ID":
+      localStorage.setItem("gradeId",JSON.stringify(payload));
         return {
           subjects:state.subjects,
           gradeId: payload,
@@ -25,6 +31,7 @@ const initialState = {
           offerSubject:state.offerSubject
         };
         case "SET_TEACHER_SUBJECTS":
+        localStorage.setItem("teacherSlectedSubjects",JSON.stringify(payload));
         return {
           subjects:state.subjects,
           gradeId: state.gradeId,
@@ -33,6 +40,7 @@ const initialState = {
           offerSubject:state.offerSubject
         };
         case "SET_OFFER_SUBJECT":
+        localStorage.setItem("offerSubject",JSON.stringify(payload));
         return {
           subjects:state.subjects,
           gradeId: state.gradeId,

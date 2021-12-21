@@ -3,6 +3,8 @@ package com.example.demo.Student;
 import com.example.demo.Grade.Grade;
 import com.example.demo.Offer.Offer;
 import com.example.demo.Rating.Rating;
+import com.example.demo.User.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -19,43 +21,35 @@ public class Student {
     private String fName;
     private String lName;
     @Column(unique=true)
-    private String username;
-    @Column(unique=true)
     private String email;
-    private String password;
     private Long phone;
-    private String role="student";
+
     @ManyToOne (fetch = FetchType.EAGER,optional = false)
     @JoinColumn(name ="grade_id")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnoreProperties("students")
     private Grade grade;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<Offer> offers = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<Rating> ratings = new ArrayList<>();
+    @OneToOne (fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name ="user_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private User user;
 
     public Student() {
     }
 
-    public Student(Long id, String fName, String lName, String username, String email, String password, Long phone, Grade grade, List<Offer> offers, List<Rating> ratings) {
+    public Student(Long id, String fName, String lName, String email, Long phone, Grade grade, List<Offer> offers, List<Rating> ratings) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
-        this.username = username;
         this.email = email;
-        this.password = password;
         this.phone = phone;
         this.grade = grade;
         this.offers = offers;
         this.ratings = ratings;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public Long getId() {
@@ -82,28 +76,12 @@ public class Student {
         this.lName = lName;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Long getPhone() {
