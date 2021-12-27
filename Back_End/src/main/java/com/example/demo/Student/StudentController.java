@@ -23,16 +23,22 @@ public class StudentController {
         return studentService.getStudents();
     }
 
-    @GetMapping("/{username}")
-    public int getStudentGradeId(@PathVariable String username)
+    @GetMapping("/{id}")
+    public int getStudentGradeId(@PathVariable String id)
     {
-        return studentService.getStudentGradeId(username);
+        return studentService.getStudentGradeId(id);
     }
 
-    @GetMapping("/student/{username}")
-    public Student getStudentByUsername(@PathVariable String username)
+    @GetMapping("/student/{id}")
+    public Student getStudentById(@PathVariable String id)
     {
-        return studentService.getStudentByUsername(username);
+        return studentService.getStudentById(id);
+    }
+
+    @GetMapping("/student/user/{userId}")
+    public Student getStudentByUserId(@PathVariable String userId)
+    {
+        return studentService.getStudentByUserId(userId);
     }
 
     @PostMapping

@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface TeacherRepo extends JpaRepository<Teacher, Long> {
 //    @Query(value ="select id from teachers where username =?1",nativeQuery = true)
-    public Teacher findByUsername(String username);
+    public Teacher findById(String id);
 }

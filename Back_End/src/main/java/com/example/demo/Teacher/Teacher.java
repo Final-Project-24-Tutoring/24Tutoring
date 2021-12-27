@@ -3,7 +3,8 @@ package com.example.demo.Teacher;
 import com.example.demo.Offer.Offer;
 import com.example.demo.Rating.Rating;
 import com.example.demo.TeacherGradeSubjectLink.TeacherGradeSubjectLink;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.example.demo.User.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,41 +19,31 @@ public class Teacher {
     private String fName;
     private String lName;
     @Column(unique=true)
-    private String username;
-    @Column(unique=true)
     private String email;
-    private String password;
     private Long phone;
-    private String role="teacher";
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
     private List<Offer> offers = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
     private List<Rating> ratings = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
     private List<TeacherGradeSubjectLink> teacherGradeSubjectLinks = new ArrayList<>();
+    @OneToOne (fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name ="user_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private User user;
 
 
     public Teacher() {
     }
 
-    public Teacher(Long id, String fName, String lName, String username, String email, String password, Long phone, List<Offer> offers, List<Rating> ratings) {
+    public Teacher(Long id, String fName, String lName, String email, Long phone, List<Offer> offers, List<Rating> ratings) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
-        this.username = username;
         this.email = email;
-        this.password = password;
         this.phone = phone;
         this.offers = offers;
         this.ratings = ratings;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public Long getId() {
@@ -79,28 +70,8 @@ public class Teacher {
         this.lName = lName;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Long getPhone() {

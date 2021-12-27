@@ -1,30 +1,41 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { setUser } from "../reducers/User/User";
 import { useNavigate } from "react-router-dom";
 import {setGradeId} from "../reducers/subjects/Subjects";
+import { useState } from "react";
 
 function SignUpStudent() {
+  const state = useSelector((state) => {
+    return {
+      user: state.User.user,
+      token: state.User.token
+    }; 
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-   let firstName;
-   let lastName;
-   let userName;
-   let email;
-   let password;
-   let confirmPassword;
-   let phone;
-   let grade=1;
-   let emailExist=false;
-   let usernameExist=false;
+    // use state varibals to save user inputs
+  const [firstName,setFirstName]=useState("");
+  const [lastName,setLastName]=useState("");
+  const [userName,setUserName]=useState("");
+  const [email,setEmail]=useState("");
+  const [password,setPassword]=useState("");
+  const [confirmPassword,setConfirmPassword]=useState("");
+  const [phone,setPhone]=useState("");
+  const [grade,setGrade]=useState(1);
+  const [emailExist,setEmailExist]=useState(false);
+  const [usernameExist,setUsernameExist]=useState(false);
 
    function getStudents(event){
 
     event.preventDefault();
        let data=[];
-       //get teachers and check if the username and email exist 
+       //get students and check if the username and email exist 
+       const config={
+        headers:{Authorization:`Bearer ${state.token}`}
+      }
        axios
-       .get("http://localhost:8080/students")
+       .get("http://localhost:8080/students",config)
        .then(function (response) {
            console.log(response.data);
            data=response.data;
@@ -90,31 +101,30 @@ function SignUpStudent() {
      }
    }
    const changeFirstName = (e) => {
-       firstName = e.target.value;
+    setFirstName(e.target.value);
      };
      const changeLastName = (e) => {
-       lastName = e.target.value;
+      setLastName(e.target.value);
      };
      const changeUserName = (e) => {
-       userName = e.target.value;
-       usernameExist=false
+      setUserName(e.target.value);
+       setUsernameExist(false);
      };
      const changeEmail = (e) => {
-       email = e.target.value;
-       emailExist=false
+       setEmail(e.target.value);
+       setEmailExist(false);
      };
      const changePassword = (e) => {
-       password = e.target.value;
+       setPassword(e.target.value);
      };
      const changeConfirmPassword = (e) => {
-       confirmPassword = e.target.value;
+       setConfirmPassword(e.target.value);
      };
      const changePhone = (e) => {
-       phone = e.target.value;
+       setPhone(e.target.value);
      };
      const changeGrade = (e) => {
-        grade = e.target.value;
-        console.log(grade)
+        setGrade(e.target.value);
       };
    return (
     <div className="container">
@@ -218,7 +228,7 @@ function SignUpStudent() {
         <div className="form-group">
           <label className="col-md-4 control-label" />
           <div className="col-md-4"><br />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" className="btn btn-warning" onClick={getStudents}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;تسجيل جديد <span className="glyphicon glyphicon-send" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            <button type="submit" className="btn btn-warning" onClick={getStudents}>تسجيل جديد <span className="glyphicon glyphicon-send" /></button>
           </div>
         </div>
       </fieldset>

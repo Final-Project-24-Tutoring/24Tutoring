@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3afc2e9b-d462-4de8-8b79-de8942747f26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/Security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/DemoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/Rating/RatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/Rating/RatingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/Student/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/Student/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/Student/StudentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/Student/StudentRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/Student/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/demo/Student/StudentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Back_End/src/main/java/com/example/demo/Role/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Back_End/src/main/java/com/example/demo/Role/RoleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Back_End/src/main/java/com/example/demo/Role/RoleRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Back_End/src/main/java/com/example/demo/Role/RoleService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
